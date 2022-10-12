@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Nodo{
+      constructor (numero){
+        this.numero=numero;
+        this.siguiente=null;
+      }
+    }
+    class Lista{
+      constructor(){
+        this.primero=null;
+      }
+      agregar(nuevo){
+        if (this.primero==null)
+          this.primero=nuevo;
+        else{
+          this._agregateRec(nuevo, this.primero);
+        }
+      }
+
+      agregarInicio(nuevo){
+          nuevo.siguiente=this.primero;
+          this.primero=nuevo;
+      }
+      _agregateRec(nuevo,nodoX){
+        if (nodoX.siguiente==null)
+          nodoX.siguiente=nuevo;
+        else
+          this._agregateRec(nuevo,nodoX.siguiente);
+      }
+      
+      listar(){
+        let res="";
+        let aux=this.primero;
+        while (aux!=null){
+          res += aux.numero + " ";
+          aux=aux.siguiente;
+        }
+        return res;
+      }
+
+      /*listarInverso(){
+        let res="";
+        let primero=this.primero;
+        let ultimo="";
+        while(){
+          res += aux.numero + " ";
+          //aux.siguiente=aux;
+        }
+        return res;
+      }*/
+
+    }
+    
+    let miLista=new Lista();
+    let nodo=new Nodo(4);
+    miLista.agregar(nodo);
+  
+    nodo=new Nodo(7);
+    miLista.agregar(nodo);
+    nodo=new Nodo(9);
+    miLista.agregar(nodo);
+    nodo=new Nodo(2);
+    miLista.agregar(nodo);
+    nodo=new Nodo(3);
+    miLista.agregarInicio(nodo);
+    console.log(miLista.listar());  
+    //console.log(miLista.listarInverso());  
+  </script>
+
+</body>
+</html>
